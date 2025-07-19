@@ -1,22 +1,22 @@
 FROM node:14
 
-# Install FFmpeg
+# Install ffmpeg via apt-get
 RUN apt-get update \
   && apt-get install -y --no-install-recommends ffmpeg \
   && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Set app working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
+# Install backend dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the app
+# Copy rest of the app
 COPY . .
 
-# Expose app port
+# App port (adjust if needed)
 EXPOSE 5000
 
-# Start the app
+# Start command
 CMD ["npm", "start"]
