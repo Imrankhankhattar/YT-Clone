@@ -1,25 +1,22 @@
-# Stage 1: Get ffmpeg from trusted base
-FROM jrottenberg/ffmpeg:4.4-ubuntu1804 as ffmpeg
-
-# Stage 2: Main node backend using Node 14
 FROM node:14
 
-# Copy only ffmpeg binary (skip ffprobe)
-COPY --from=ffmpeg /usr/bin/ffmpeg /usr/bin/ffmpeg
+# Install FFmpeg
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends ffmpeg \
+  && rm -rf /var/lib/apt/lists/*
 
-# Setup working directory
+# Set working directory
 WORKDIR /app
 
-# Copy dependencies and install
+# Copy package.json and install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy rest of app
+# Copy the rest of the app
 COPY . .
 
-# Expose port your app runs on
+# Expose app port
 EXPOSE 5000
 
 # Start the app
 CMD ["npm", "start"]
-
