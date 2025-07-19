@@ -1,21 +1,25 @@
-# Use official Node.js image
+# Stage 1: FFmpeg binaries
+FROM jrottenberg/ffmpeg:4.4-ubuntu1804 as ffmpeg
+
+# Stage 2: Node.js 14 backend with ffmpeg support
 FROM node:14
 
-# Install FFmpeg
-RUN apt-get update && apt-get install -y ffmpeg
+# Copy FFmpeg binaries from Stage 1
+COPY --from=ffmpeg /usr/bin/ffmpeg /usr/bin/ffmpeg
+COPY --from=ffmpeg /usr/bin/ffprobe /usr/bin/ffprobe
 
-# Create app directory
+# Set working directory
 WORKDIR /app
 
-# Copy server files
-COPY . .
-
-# Install server dependencies
+# Copy package files and install dependencies
+COPY package*.json ./
 RUN npm install
 
-# Expose your app's port (adjust if yours is different)
+# Copy the rest of the server code
+COPY . .
+
+# Expose the port your Express app uses
 EXPOSE 5000
 
 # Start the server
 CMD ["npm", "start"]
-
