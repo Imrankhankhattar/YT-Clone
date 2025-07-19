@@ -14,14 +14,11 @@ RUN apt-get update && \
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install Node.js dependencies
-RUN npm install 
-
-# Copy the rest of the application files
+# Copy the entire application
 COPY . .
+
+# Install server dependencies
+RUN cd server && npm install
 
 # Expose the port your app uses
 EXPOSE 5000
@@ -29,5 +26,5 @@ EXPOSE 5000
 # Set NODE_ENV to production
 ENV NODE_ENV=production
 
-# Start the application
+# Start the application using our startup script
 CMD ["npm", "start"]

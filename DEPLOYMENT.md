@@ -24,7 +24,9 @@ GOOGLE_DRIVE_FOLDER_ID=your-google-drive-folder-id
 - **Build Command**: `cd server && npm install`
 - **Start Command**: `npm start`
 
-**Important**: The root package.json now has a `start` script that uses `start-server.js` to properly launch the server from the server directory.
+**Important**: 
+- The root package.json now has a `start` script that uses `start-server.js` to properly launch the server from the server directory.
+- The Dockerfile has been updated to install server dependencies correctly.
 
 ### 3. Important Notes
 
@@ -40,8 +42,16 @@ If you get "Cannot find module 'express'" error:
 1. Make sure all dependencies are listed in server/package.json
 2. Check that the build command runs successfully
 3. Verify that node_modules are being installed in the server directory
+4. **Dockerfile Issue**: The Dockerfile has been fixed to install server dependencies correctly
 
-### 5. Local Testing
+### 5. Dockerfile Configuration
+
+The Dockerfile has been updated for server-only deployment:
+- Copies the entire application
+- Installs dependencies from `server/package.json`
+- Uses the root `npm start` script to launch the server
+
+### 6. Local Testing
 
 To test locally before deploying:
 ```bash
@@ -50,7 +60,7 @@ npm install
 npm start
 ```
 
-### 6. File Structure for Deployment
+### 7. File Structure for Deployment
 
 The server is structured as:
 ```
@@ -62,10 +72,11 @@ The server is structured as:
 │   ├── models/ (database models)
 │   └── config/ (configuration files)
 ├── render.yaml (Render configuration)
-└── Procfile (process definition)
+├── Procfile (process definition)
+└── Dockerfile (Docker configuration)
 ```
 
-### 7. API Endpoints
+### 8. API Endpoints
 
 The server provides these API endpoints:
 - `GET /` - Health check
