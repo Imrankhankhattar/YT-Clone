@@ -24,6 +24,8 @@ GOOGLE_DRIVE_FOLDER_ID=your-google-drive-folder-id
 - **Build Command**: `cd server && npm install`
 - **Start Command**: `cd server && npm start`
 
+**Important**: The root package.json no longer has a `start` script to avoid conflicts with Render's deployment process.
+
 ### 3. Important Notes
 
 1. **MongoDB**: Use MongoDB Atlas for cloud database
