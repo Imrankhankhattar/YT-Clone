@@ -1,50 +1,38 @@
-# MERN Stack [YouTube Clone](https://smfils1-youtube-clone.herokuapp.com)
+# 🎥 MERN Stack [YouTube Clone](https://github.com/Imrankhankhattar/YT-Clone)
 
-This is a YouTube Clone that implements the main features of [YouTube](https://www.youtube.com/) **solely intended for educational purposes** and is created under **fair use**.
+A YouTube clone built with the **MERN stack** implementing core features like video uploads, streaming, subscriptions, and comments — built purely for **educational purposes** and under **fair use**.
 
-##### \* **Video Uploads are limited to 25 MB.**
+> ⚠️ **Note:** Video uploads are limited to **25 MB**.
 
-## Technologies
+---
 
-- [MongoDB & Mongoose](https://mongoosejs.com/) for the database
-- [Node & Express](http://expressjs.com/) for the backend
-- [Fluent FFMPEG](https://github.com/fluent-ffmpeg/node-fluent-ffmpeg) for video proccessing
-- [Google OAuth2](https://developers.google.com/identity/protocols/oauth2/web-server) for authentication
-- [Google Drive API](https://developers.google.com/drive/api/v3/quickstart/nodejs) for cloud storage (services like AWS S3 and Google Cloud is recommended for production applications)
-- [React](https://reactjs.org/docs/create-a-new-react-app.html) for the frontend
-- [Redux](https://react-redux.js.org/) for frontend application state
-- [Material UI](https://material-ui.com/) for UI
+## 🚀 Tech Stack
 
-## Features
+- **MongoDB + Mongoose** – Database
+- **Node.js + Express** – Backend API
+- **Fluent FFMPEG** – Video processing (encoding, thumbnail generation)
+- **Google OAuth2** – User authentication
+- **Google Drive API** – Cloud storage for video uploads *(can be swapped for AWS/GCP in production)*
+- **React** – Frontend framework
+- **Redux** – Application state management
+- **Material UI** – Component-based UI design
 
-- [x] Google OAuth
-- [x] Video upload, streaming, commenting, and rating
-- [x] Channel subscriptions
-- [x] Trending, recommended, and categorized videos
-- [x] Video searching
-- [ ] Pagination
-- [ ] Watch history
-- [ ] Video Playlist
-- [ ] Updating & deleting videos
-- [ ] Going live
+---
 
-## Running Locally
+## ✅ Features
 
-### Configuring environment variables
+- 🔐 Google OAuth authentication
+- 📤 Upload, stream, like/dislike, and comment on videos
+- 📺 Channel creation & subscriptions
+- 🔥 Trending, recommended, and categorized video listings
+- 🔍 Video search functionality
 
-- Rename client's [.env-sample](https://github.com/smfils1/youtube-clone/blob/master/client/sample.env) to `.env`
-- Rename server's [.env-sample](https://github.com/smfils1/youtube-clone/blob/master/server/sample.env) to `.env`
-- Fill in the environment variable values in both `.env` files
+---
 
-### Starting the App
+## ⚙️ Local Setup
 
-- `npm install` to install all dependencies
-- `npm run dev` to run both client & backend in development
-- `cd server && npm run server` to run only backend
-- `cd client && npm start` to run only client
+### 1. Clone the Repo
 
-## Deploy to Heroku
-
-##### The neccessary environment variables & buildpacks are defined in [app.json](https://github.com/smfils1/youtube-clone/blob/master/app.json)
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+```bash
+git clone https://github.com/Imrankhankhattar/YT-Clone.git
+cd YT-Clone
