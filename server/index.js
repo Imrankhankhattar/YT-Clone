@@ -47,6 +47,9 @@ app.use("/api/subscriptions", auth2, subscriptionRoutes);
 app.use("/api/videos", auth2, videoRoutes);
 app.use("/api/comments", auth2, commentRoutes);
 app.use("/api/ratings", auth2, ratingRoutes);
+app.get("/", (req, res) => {
+  res.status(200).send("Server is running.");
+});
 
 //For Deploying client & api on one server
 if (process.env.NODE_ENV === "production") {
