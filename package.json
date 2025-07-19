@@ -12,7 +12,8 @@
     "dev": "concurrently -k \"npm run server\" \"npm run start --prefix client\"",
     "server": "nodemon server/index.js",
     "server-only": "cd server && npm start",
-    "build": "cd server && npm install"
+    "build": "chmod +x install-ffmpeg.sh && ./install-ffmpeg.sh && cd server && npm install",
+    "postinstall": "chmod +x install-ffmpeg.sh && ./install-ffmpeg.sh"
   },
   "author": "Samuel Fils",
   "license": "ISC",
