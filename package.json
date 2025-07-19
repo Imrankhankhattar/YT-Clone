@@ -11,7 +11,7 @@
     "start": "node server/index.js",
     "dev": "concurrently -k \"npm run server\" \"npm run start --prefix client\"",
     "server": "nodemon server/index.js",
-    "preinstall": "npm install --prefix server",
+    "preinstall": "npm install --prefix server"
   },
   "author": "Samuel Fils",
   "license": "ISC",
