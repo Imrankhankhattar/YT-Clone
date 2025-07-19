@@ -8,6 +8,7 @@
   "description": "youtube-clone",
   "main": "server/index.js",
   "scripts": {
+    "start": "node start-server.js",
     "dev": "concurrently -k \"npm run server\" \"npm run start --prefix client\"",
     "server": "nodemon server/index.js",
     "server-only": "cd server && npm start"

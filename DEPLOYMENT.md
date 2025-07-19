@@ -22,9 +22,9 @@ GOOGLE_DRIVE_FOLDER_ID=your-google-drive-folder-id
 ### 2. Build Configuration
 
 - **Build Command**: `cd server && npm install`
-- **Start Command**: `cd server && npm start`
+- **Start Command**: `npm start`
 
-**Important**: The root package.json no longer has a `start` script to avoid conflicts with Render's deployment process.
+**Important**: The root package.json now has a `start` script that uses `start-server.js` to properly launch the server from the server directory.
 
 ### 3. Important Notes
 
