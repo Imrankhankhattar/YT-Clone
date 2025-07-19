@@ -11,10 +11,11 @@
     "start": "node server/index.js",
     "dev": "concurrently -k \"npm run server\" \"npm run start --prefix client\"",
     "server": "nodemon server/index.js",
-    "preinstall": "npm install --prefix server"
+    "server-only": "cd server && npm start"
   },
   "author": "Samuel Fils",
   "license": "ISC",
+
   "devDependencies": {
     "concurrently": "^5.2.0",
     "nodemon": "^2.0.4"
