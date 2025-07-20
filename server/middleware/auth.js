@@ -6,6 +6,9 @@ const config = require("../config");
 const auth = (req, res, next) => {
   //Get cookies
   const token = req.cookies.jwt_auth;
+  console.log("Auth middleware - Token:", token ? "Present" : "Missing");
+  console.log("Auth middleware - JWT_SECRET:", config.JWT_SECRET ? "Set" : "Missing");
+  
   try {
     //Verify token
     const signedUserId = verifyToken({
@@ -18,6 +21,7 @@ const auth = (req, res, next) => {
     req.userId = signedUserId;
     next();
   } catch (err) {
+    console.log("Auth middleware error:", err.message);
     errorResponse(err, res);
   }
 };
