@@ -86,7 +86,22 @@ router.get("/test-cookie", (req, res) => {
     path: "/"
   }).json({
     message: "Test cookie set",
-    token: testToken.substring(0, 20) + "..."
+    token: testToken.substring(0, 20) + "...",
+    origin: req.headers.origin,
+    referer: req.headers.referer
+  });
+});
+
+// Test endpoint to check if cookies are being sent from frontend
+router.get("/test-frontend-cookies", (req, res) => {
+  res.json({
+    cookies: req.cookies,
+    headers: {
+      origin: req.headers.origin,
+      referer: req.headers.referer,
+      'user-agent': req.headers['user-agent']
+    },
+    jwtAuthPresent: !!req.cookies.jwt_auth
   });
 });
 

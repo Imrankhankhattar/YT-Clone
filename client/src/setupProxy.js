@@ -6,6 +6,7 @@ module.exports = function (app) {
     createProxyMiddleware({
       target: BACKEND_URL,
       changeOrigin: true,
+      withCredentials: true,
     })
   );
 };
