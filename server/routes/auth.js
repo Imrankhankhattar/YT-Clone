@@ -33,7 +33,7 @@ router.get(
         .cookie("jwt_auth", token, {
           maxAge: config.SESSION_DURATION * 60 * 1000,
           httpOnly: true,
-          sameSite: true,
+          sameSite: config.NODE_ENV === "production" ? "none" : "lax",
           secure: config.NODE_ENV === "production",
         })
         .redirect(config.CLIENT_URL);
@@ -48,6 +48,23 @@ router.get(
 router.get("/logout", (req, res) => {
   req.logout();
   res.clearCookie("jwt_auth").json({ message: "success" });
+});
+
+// Debug endpoint to check JWT configuration
+router.get("/debug", (req, res) => {
+  res.json({
+    jwtSecret: config.JWT_SECRET ? "Set" : "Not set",
+    sessionDuration: config.SESSION_DURATION,
+    nodeEnv: config.NODE_ENV,
+    clientUrl: config.CLIENT_URL,
+    backendUrl: config.BACKEND_URL,
+    cookieSettings: {
+      maxAge: config.SESSION_DURATION * 60 * 1000,
+      httpOnly: true,
+      sameSite: config.NODE_ENV === "production" ? "none" : "lax",
+      secure: config.NODE_ENV === "production",
+    }
+  });
 });
 
 module.exports = router;

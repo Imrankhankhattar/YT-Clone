@@ -11,6 +11,7 @@ NODE_ENV=production
 PORT=10000
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/youtube-clone
 JWT_SECRET=your-super-secret-jwt-key-here
+SESSION_DURATION=60
 GOOGLE_CLIENT_ID=your-google-client-id
 GOOGLE_CLIENT_SECRET=your-google-client-secret
 GOOGLE_CALLBACK_URL=https://your-api.onrender.com/api/auth/google/redirect
@@ -18,6 +19,11 @@ GOOGLE_SERVICE_ACCOUNT_EMAIL=your-service-account@project.iam.gserviceaccount.co
 GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour Private Key Here\n-----END PRIVATE KEY-----\n"
 GOOGLE_DRIVE_FOLDER_ID=your-google-drive-folder-id
 ```
+
+**Important JWT Configuration:**
+- **JWT_SECRET**: Must be exactly the same as used locally
+- **SESSION_DURATION**: Time in minutes (default: 60)
+- **NODE_ENV**: Must be "production" for secure cookies
 
 ### 2. Build Configuration
 
@@ -44,6 +50,12 @@ If you get "Cannot find module 'express'" error:
 2. Check that the build command runs successfully
 3. Verify that node_modules are being installed in the server directory
 4. **Dockerfile Issue**: The Dockerfile has been fixed to install server dependencies correctly
+
+**JWT Token Issues:**
+- **Invalid Token Error**: Check that JWT_SECRET is set correctly in environment variables
+- **Token Expiration**: JWT tokens now use correct expiration time calculation
+- **Cookie Issues**: Cookie settings updated for production deployment
+- **Debug Endpoint**: Use `/api/auth/debug` to check JWT configuration
 
 ### 5. Dockerfile Configuration
 
