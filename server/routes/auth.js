@@ -35,6 +35,7 @@ router.get(
           httpOnly: true,
           sameSite: config.NODE_ENV === "production" ? "none" : "lax",
           secure: config.NODE_ENV === "production",
+          path: "/"
         })
         .redirect(config.CLIENT_URL);
     } catch (err) {
@@ -58,12 +59,34 @@ router.get("/debug", (req, res) => {
     nodeEnv: config.NODE_ENV,
     clientUrl: config.CLIENT_URL,
     backendUrl: config.BACKEND_URL,
+    receivedCookies: req.cookies,
+    jwtAuthCookie: req.cookies.jwt_auth ? "Present" : "Missing",
     cookieSettings: {
       maxAge: config.SESSION_DURATION * 60 * 1000,
       httpOnly: true,
       sameSite: config.NODE_ENV === "production" ? "none" : "lax",
       secure: config.NODE_ENV === "production",
     }
+  });
+});
+
+// Test endpoint to manually set a cookie
+router.get("/test-cookie", (req, res) => {
+  const testToken = generateToken({
+    id: "test-user-id",
+    secret: config.JWT_SECRET,
+    errorMessage: null,
+  });
+  
+  res.cookie("jwt_auth", testToken, {
+    maxAge: config.SESSION_DURATION * 60 * 1000,
+    httpOnly: true,
+    sameSite: config.NODE_ENV === "production" ? "none" : "lax",
+    secure: config.NODE_ENV === "production",
+    path: "/"
+  }).json({
+    message: "Test cookie set",
+    token: testToken.substring(0, 20) + "..."
   });
 });
 
