@@ -37,7 +37,7 @@ router.get(
           secure: config.NODE_ENV === "production",
           path: "/"
         })
-        .redirect(config.CLIENT_URL);
+        .json({ success: true });
     } catch (err) {
       errorResponse(err, res);
     }
