@@ -7,6 +7,7 @@ import TrendingPage from "./components/Pages/TrendingPage";
 import SearchPage from "./components/Pages/SearchPage";
 import ComingSoonPage from "./components/Pages/ComingSoonPage";
 import ChannelPage from "./components/Pages/ChannelPage";
+import CookieTest from "./components/CookieTest";
 
 import auth from "./components/authHOC";
 import Nav from "./components/Nav";
@@ -62,6 +63,7 @@ function App() {
             render={(props) => <Search {...props} />}
           />
           <Route exact path="/live" render={(props) => <ComingSoon />} />
+          <Route exact path="/cookie-test" render={(props) => <CookieTest />} />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
       </Nav>
